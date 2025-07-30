@@ -69,7 +69,7 @@ export const AskQuestionSchema = z.object({
     )
     .min(1, { message: "At least one tag is required." })
     .max(3, { message: "Cannot add more than 3 tags." }),
-})
+});
 
 export const UserSchema = z.object({
   name: z.string().min(1, { message: "Name is required." }),
@@ -85,7 +85,7 @@ export const UserSchema = z.object({
     .url({ message: "Please provide a valid URL." })
     .optional(),
   reputation: z.number().optional(),
-})
+});
 
 export const AccountSchema = z.object({
   userId: z.string().min(1, { message: "User ID is required." }),
@@ -108,4 +108,21 @@ export const AccountSchema = z.object({
     .optional(),
   provider: z.string().min(1, { message: "Provider is required." }),
   providerAccountId: z.string().min(1, { message: "Provider Account ID is required." }),
-})
+});
+
+export const SignInWithOAuthSchema = z.object({
+  provider: z.enum(["google"]),
+  providerAccountId: z
+    .string()
+    .min(1, { message: "Provider Account ID is required." }),
+  user: z.object({
+    name: z.string().min(1, { message: "Name is required." }),
+    username: z
+      .string()
+      .min(3, { message: "Username must be at least 3 characters long." }),
+    email: z
+      .string()
+      .email({ message: "Please provide a valid email address." }),
+    image: z.string().url("Invalid image URL").optional(),
+  }),
+});
