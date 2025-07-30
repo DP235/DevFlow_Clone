@@ -2,9 +2,8 @@ import { z } from 'zod';
 
 export const SignInSchema = z.object({
   email: z
-    .string()
-    .min(1, { message: 'Email is required' })
-    .email({ message: 'Invalid email address' }),
+    .email({ message: 'Invalid email address' })
+    .min(1, { message: 'Email is required' }),
     
   password: z
     .string()
@@ -14,9 +13,8 @@ export const SignInSchema = z.object({
 
 export const SignUpSchema = z.object({
   email: z
-    .string()
-    .min(1, { message: "Email is required." })
-    .email({ message: "Please provide a valid email address." }),
+    .email({ message: "Please provide a valid email address." })
+    .min(1, { message: "Email is required." }),
 
   password: z
     .string()
@@ -76,12 +74,11 @@ export const UserSchema = z.object({
   username: z
     .string()
     .min(3, { message: "Username must be at least 3 characters long." }),
-  email: z.string().email({ message: "Please provide a valid email address." }),
+  email: z.email({ message: "Please provide a valid email address." }),
   bio: z.string().optional(),
-  image: z.string().url({ message: "Please provide a valid URL." }).optional(),
+  image: z.url({ message: "Please provide a valid URL." }).optional(),
   location: z.string().optional(),
   portfolio: z
-    .string()
     .url({ message: "Please provide a valid URL." })
     .optional(),
   reputation: z.number().optional(),
@@ -90,7 +87,7 @@ export const UserSchema = z.object({
 export const AccountSchema = z.object({
   userId: z.string().min(1, { message: "User ID is required." }),
   name: z.string().min(1, { message: "Name is required." }),
-  image: z.string().url({ message: "Please provide a valid URL." }).optional(),
+  image: z.url({ message: "Please provide a valid URL." }).optional(),
   password: z
     .string()
     .min(6, { message: "Password must be at least 6 characters long." })
@@ -121,8 +118,7 @@ export const SignInWithOAuthSchema = z.object({
       .string()
       .min(3, { message: "Username must be at least 3 characters long." }),
     email: z
-      .string()
       .email({ message: "Please provide a valid email address." }),
-    image: z.string().url("Invalid image URL").optional(),
+    image: z.url("Invalid image URL").optional(),
   }),
 });
