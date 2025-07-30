@@ -8,7 +8,7 @@ import {
   Path,
   SubmitHandler,
 } from "react-hook-form";
-import { z } from "zod";
+import { z, ZodType } from "zod";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -23,9 +23,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { ActionResponse } from "@/types/global";
 
 interface AuthFormProps<T extends FieldValues> {
-  schema: z.ZodType<T>;
+  schema: ZodType<T, T>;
   defaultValues: T;
   onSubmit: (data: T) => Promise<ActionResponse>;
   formType: "SIGN_UP" | "SIGN_IN";
