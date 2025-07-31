@@ -16,7 +16,7 @@ type ErrorResponse = ActionResponse<undefined> & { success: false };
 type APIErrorResponse = NextResponse<ErrorResponse>;
 type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
 
-export interface Tag {
+interface GTag {
   _id: string;
   name: string;
   // questions: number;
@@ -24,20 +24,25 @@ export interface Tag {
   // compact?: boolean;
 }
 
-interface Author {
+interface GAuthor {
   _id: string;
   name: string;
   image: string;
 }
 
-export interface Question {
+interface GQuestion {
     _id: string;
     title: string;
     description: string;
-    tags: Tag[];
-    author: Author;
+    tags: GTag[];
+    author: GAuthor;
     upvotes: number;
     answers: number;
     views: number;
     createdAt: Date;
+}
+
+interface RouteParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<Record<string, string>>;
 }

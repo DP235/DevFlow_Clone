@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
         hostname: "lh3.googleusercontent.com",
         port: "",
       },
+      new URL('https://www.w3schools.com/**'),
     ],
   },
   allowedDevOrigins: ['192.168.1.214'],

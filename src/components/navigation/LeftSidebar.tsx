@@ -4,9 +4,8 @@ import Image from "next/image";
 import NavLinks from './navbar/NavLinks';
 import React from 'react';
 import ROUTES from "@/constants/routes";
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 import { LogOut } from "lucide-react";
-import { signOut } from "next-auth/react";
 
 const LeftSidebar = async () => {
   const session = await auth();

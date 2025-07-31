@@ -5,6 +5,7 @@ import React from "react";
 import Theme from "./Theme";
 import { auth } from "@/auth";
 import UserAvatar from "@/components/UserAvatar";
+import MobileNavigation from "./MobileNavigation";
 
 const Navbar = async () => {
   const session = await auth();
@@ -37,6 +38,8 @@ const Navbar = async () => {
             imageUrl={session.user?.image}
           />
         )}
+
+        <MobileNavigation />
       </div>
     </nav>
   );
