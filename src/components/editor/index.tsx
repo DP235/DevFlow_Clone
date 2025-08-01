@@ -1,6 +1,6 @@
 'use client'
 
-import type { ForwardedRef } from 'react'
+import type { Ref } from 'react'
 import {
   headingsPlugin,
   listsPlugin,
@@ -38,22 +38,21 @@ import { Separator } from '@radix-ui/react-dropdown-menu'
 interface Props {
     value: string;
     fieldChange: (value: string) => void;
-    editorRef: ForwardedRef<MDXEditorMethods> | null 
+    editorRef: Ref<MDXEditorMethods> | null 
 }
 
-const Editor = ({ value, editorRef, fieldChange, ...props}: Props) => {
+const Editor = ({ value, editorRef, fieldChange }: Props) => {
     const { resolvedTheme } = useTheme();
 
-    const theme = resolvedTheme === "dark" ? [basicDark] : [];
+    const themeExtension = resolvedTheme === "dark" ? [basicDark] : [];
     
     return (
     <MDXEditor
       key={resolvedTheme}
       markdown={value}
-      className='background-light800_dark200 light-border-2 markdown-editor dark-editor w-full border'
+      className='background-light800_dark200 light-border-2 markdown-editor dark-editor grid w-full border'
       onChange={fieldChange}
       plugins={[
-        // Example Plugin Usage
         headingsPlugin(),
         listsPlugin(),
         linkPlugin(),
@@ -81,7 +80,7 @@ const Editor = ({ value, editorRef, fieldChange, ...props}: Props) => {
                 jsx: 'JavaScript (React)',
             },
             autoLoadLanguageSupport: true,
-            codeMirrorExtensions: theme,
+            codeMirrorExtensions: themeExtension,
         }),
         diffSourcePlugin({ viewMode: "rich-text", diffMarkdown: "" }),
         toolbarPlugin({
@@ -118,7 +117,6 @@ const Editor = ({ value, editorRef, fieldChange, ...props}: Props) => {
             )
         }),
       ]}
-      {...props}
       ref={editorRef}
     />
   )

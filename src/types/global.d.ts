@@ -33,7 +33,7 @@ interface GAuthor {
 interface GQuestion {
     _id: string;
     title: string;
-    description: string;
+    content: string;
     tags: GTag[];
     author: GAuthor;
     upvotes: number;
