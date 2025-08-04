@@ -54,7 +54,7 @@ const Editor = ({ value, editorRef, fieldChange }: Props) => {
       onChange={fieldChange}
       plugins={[
         headingsPlugin(),
-        listsPlugin(),
+        listsPlugin({ bullet: true, ordered: true, task: true }),
         linkPlugin(),
         linkDialogPlugin(),
         quotePlugin(),
