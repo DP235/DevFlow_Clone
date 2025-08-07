@@ -1,17 +1,14 @@
 import QuestionCard from '@/components/cards/QuestionCard';
 import DataRenderer from '@/components/DataRenderer';
-import HomeFilter from '@/components/filters/HomeFilter';
 import LocalSearch from '@/components/search/LocalSearch';
-import { Button } from '@/components/ui/button';
 import ROUTES from '@/constants/routes';
 import { EMPTY_QUESTION } from '@/constants/states';
 import { getTagQuestions } from '@/lib/actions/tag.action';
 import { RouteParams } from '@/types/global'
-import Link from 'next/link';
 import React from 'react'
 
 const TagDetail = async ({ params, searchParams }: RouteParams) => {
-    const { id } = params;
+    const { id } = await params;
     const { page, pageSize, query } = await searchParams;
 
     const { success, data, error } = await getTagQuestions({
