@@ -1,8 +1,10 @@
 import QuestionCard from "@/components/cards/QuestionCard";
+import DataRenderer from "@/components/DataRenderer";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import { EMPTY_QUESTION } from "@/constants/states";
 import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
 
@@ -42,6 +44,22 @@ const Home = async ({ searchParams }: SearchParams) => {
           />
         </section>
         <HomeFilter />
+
+        <DataRenderer 
+          success={success}
+          error={error}
+          data={questions}
+          empty={EMPTY_QUESTION}
+          render={(questions) => (
+            <div>
+              {questions.map((question) => (
+                <QuestionCard key={question._id} question={question} />
+              ))}
+            </div>
+          )
+          }
+        />
+
         {success ? (
           <div className="mt-10 flex w-full flex-col gap-6">
             {questions && questions.length > 0 ? 

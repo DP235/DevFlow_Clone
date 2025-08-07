@@ -24,7 +24,7 @@ const Metric = ({
     isAuthor
 }: Props) => {
     const metricContent = <>
-        <Image 
+        <Image
             src={imgUrl}
             alt={alt}
             width={16}

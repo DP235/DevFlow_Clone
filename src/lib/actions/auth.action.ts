@@ -23,6 +23,7 @@ export async function signUpWithCredentials(
   }
 
   const { name, username, email, password } = validationResult.params!;
+  const image = "/images/default-avatar.svg"
 
   const session = await mongoose.startSession();
   session.startTransaction();
@@ -42,15 +43,23 @@ export async function signUpWithCredentials(
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const [newUser] = await User.create([{ username, name, email }], {
-      session,
-    });
+    const [newUser] = await User.create([
+      { 
+        username, 
+        name, 
+        email,
+        image: image,
+      }
+    ], 
+    { session }
+    );
 
     await Account.create(
       [
         {
           userId: newUser._id,
           name,
+          image: image,
           provider: "credentials",
           providerAccountId: email,
           password: hashedPassword,
