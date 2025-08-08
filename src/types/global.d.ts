@@ -54,3 +54,10 @@ interface PaginatedSearchParams {
   filter?: string;
   sort?: string;
 }
+
+interface GAnswer {
+  _id: string;
+  author: GAuthor;
+  content: string;
+  createdAt: Date;
+}
