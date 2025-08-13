@@ -1,8 +1,10 @@
+import AllAnswer from '@/components/answers/AllAnswer';
 import TagCard from '@/components/cards/TagCard';
 import Preview from '@/components/editor/Preview';
 import AnswerForm from '@/components/forms/AnswerForm';
 import Metric from '@/components/Metric';
 import UserAvatar from '@/components/UserAvatar';
+import Votes from '@/components/votes/Votes';
 import ROUTES from '@/constants/routes';
 import { getAnswer } from '@/lib/actions/answer.action';
 import { getQuestion, incrementViews } from '@/lib/actions/question.action';
@@ -54,7 +56,12 @@ const QuestionDetails = async ({ params }: RouteParams) => {
             </div>
 
             <div className='flex justify-end'>
-              <p>Votes</p>
+              <Votes 
+                upvotes={question.upvotes}
+                hasupVoted={true}
+                downvotes={question.downvotes}
+                hasdownVoted={false}
+              />
             </div>
 
             <h2 className='h2-semibold text-dark200_light900 mt-3.5 w-full'>
@@ -102,7 +109,16 @@ const QuestionDetails = async ({ params }: RouteParams) => {
           </div>
 
           <section className='my-5'>
-            <AnswerForm questionId={question._id} />
+            <AllAnswer 
+              data={answersResult?.answers}
+              success={areAnswersLoaded}
+              error={answersError}
+              totalAnswers={answersResult?.totalAnswers || 0}
+            />
+          </section>
+
+          <section className='my-5'>
+            <AnswerForm questionId={question._id} questionTitle={question.title} questionContent={question.content} />
           </section>
         </div>
       </>

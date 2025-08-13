@@ -37,6 +37,7 @@ interface GQuestion {
     tags: GTag[];
     author: GAuthor;
     upvotes: number;
+    downvotes: number;
     answers: number;
     views: number;
     createdAt: Date;
