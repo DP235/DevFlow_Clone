@@ -61,4 +61,6 @@ interface GAnswer {
   author: GAuthor;
   content: string;
   createdAt: Date;
+  upvotes: number;
+  downvotes: number;
 }
