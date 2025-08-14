@@ -64,3 +64,15 @@ interface GAnswer {
   upvotes: number;
   downvotes: number;
 }
+
+interface GUser {
+  _id: string;
+  name: string;
+  username: string;
+  email: string;
+  bio?: string;
+  image?: string;
+  location?: string;
+  portfolio?: string;
+  reputation?: string;
+}
