@@ -19,7 +19,7 @@ type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
 interface GTag {
   _id: string;
   name: string;
-  // questions: number;
+  questions?: number;
   // showCount?: boolean;
   // compact?: boolean;
 }
