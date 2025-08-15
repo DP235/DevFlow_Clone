@@ -4,12 +4,15 @@ import { EMPTY_ANSWERS } from "@/constants/states";
 import AnswerCard from "../cards/AnswerCard";
 import CommonFilter from "../filters/CommonFilter";
 import { AnswerFilters } from "@/constants/filter";
+import Pagination from "../Pagination";
 
 interface Props extends ActionResponse<GAnswer[]> {
+    page: number;
+    isNext: boolean;
     totalAnswers: number;
 }
 
-const AllAnswer = ({ data, success, error, totalAnswers }: Props) => {
+const AllAnswer = ({ page, isNext, data, success, error, totalAnswers }: Props) => {
   return <div className="mt-11">
     <div className="flex items-center justify-between">
         <h3 className="primary-text-gradient">
@@ -27,8 +30,10 @@ const AllAnswer = ({ data, success, error, totalAnswers }: Props) => {
         error={error}
         success={success}
         empty={EMPTY_ANSWERS}
-        render={(answers) => answers.map((answer) => <AnswerCard key={answer._id} {...answers}/>)}
+        render={(answers) => answers.map((answer) => <AnswerCard key={answer._id} {...answer}/>)}
     />
+
+    <Pagination page={page} isNext={isNext} />
   </div>
 }
 
