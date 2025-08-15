@@ -8,7 +8,7 @@ import handleError from "../handlers/error";
 import { Collection } from "@/database";
 import { revalidatePath } from "next/cache";
 import ROUTES from "@/constants/routes";
-import mongoose, { FilterQuery, PipelineStage } from "mongoose";
+import mongoose, { PipelineStage } from "mongoose";
 
 export async function toggleSaveQuestion(
     params: CollectionBaseParams
@@ -111,10 +111,6 @@ export async function getSavedQuestions(params: PaginatedSearchParams): Promise<
     const { page = 1, pageSize = 10, query, filter } = params;
     const skip = (Number(page) - 1) * pageSize;
     const limit = pageSize;
-
-    const filterQuery: FilterQuery<typeof Collection> = { author: userId };
-
-    
 
     const sortOptions: Record<string, Record<string, 1 | -1>> = {
         mostrecent: { "question.createdAt": -1 },
