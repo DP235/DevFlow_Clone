@@ -63,6 +63,7 @@ interface GAnswer {
   createdAt: Date;
   upvotes: number;
   downvotes: number;
+  question: string;
 }
 
 interface GUser {
@@ -75,10 +76,17 @@ interface GUser {
   location?: string;
   portfolio?: string;
   reputation?: string;
+  createdAt: Date;
 }
 
 interface GCollection {
   _id: string;
   author: string | GAuthor;
   question: GQuestion;
+}
+
+interface BadgeCounts {
+  GOLD: number;
+  SILVER: number;
+  BRONZE: number;
 }
