@@ -1,7 +1,53 @@
-const Collection = () => {
+import QuestionCard from "@/components/cards/QuestionCard";
+import DataRenderer from "@/components/DataRenderer";
+import LocalSearch from "@/components/search/LocalSearch";
+import { EMPTY_QUESTION } from "@/constants/states";
+import { getSavedQuestions } from "@/lib/actions/collection.action";
+
+interface SearchParams {
+  searchParams: Promise<{ [key: string]: string }>
+}
+
+const Collection = async ({ searchParams }: SearchParams) => {
+  const { page, pageSize, query, filter } = await searchParams;
+
+  const { success, data, error } = await getSavedQuestions({
+    page: Number(page) || 1,
+    pageSize: Number(pageSize) || 10,
+    query: query || "",
+    filter: filter || "",
+  })
+
+  const { collection } = data || {};
+
   return (
-    <div>Collection</div>
-  )
+    <>
+      <h1 className="h1-bold text-dark100_light900">Saved Questions</h1>
+
+      <section className="mt-11">
+        <LocalSearch 
+          route="/"
+          imgSrc="/icons/search.svg"
+          placeholder="Search questions..."
+          otherClasses="flex-1"
+        />
+      </section>
+
+      <DataRenderer 
+        success={success}
+        error={error}
+        data={collection}
+        empty={EMPTY_QUESTION}
+        render={(collection) => (
+          <div>
+            {collection.map((item) => (
+              <QuestionCard key={item._id} question={item.question} />
+            ))}
+          </div>
+        )}
+      />
+    </>
+  );
 }
 
 export default Collection

@@ -76,3 +76,9 @@ interface GUser {
   portfolio?: string;
   reputation?: string;
 }
+
+interface GCollection {
+  _id: string;
+  author: string | GAuthor;
+  question: GQuestion;
+}
