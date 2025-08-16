@@ -75,7 +75,7 @@ interface GUser {
   image?: string;
   location?: string;
   portfolio?: string;
-  reputation?: string;
+  reputation?: number;
   createdAt: Date;
 }
 
