@@ -10,9 +10,7 @@ import User from "@/database/user.model";
 import action from "../handlers/action";
 import handleError from "../handlers/error";
 import { NotFoundError } from "../http-errors";
-import { SignInSchema, SignUpSchema } from "../validation";
-import { ActionResponse, ErrorResponse } from "@/types/global";
-import { AuthCredentials } from "@/types/action";
+import { SignInSchema, SignUpSchema } from "../validations";
 
 export async function signUpWithCredentials(
   params: AuthCredentials

@@ -4,9 +4,7 @@ import { NextResponse } from "next/server";
 
 import handleError from "@/lib/handlers/error";
 import { ValidationError } from "@/lib/http-errors";
-import { AIAnswerSchema } from "@/lib/validation";
-import { APIErrorResponse } from "@/types/global";
-
+import { AIAnswerSchema } from "@/lib/validations";
 export async function POST(req: Request) {
   const { question, content, userAnswer } = await req.json();
 

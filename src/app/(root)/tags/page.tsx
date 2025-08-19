@@ -7,7 +7,6 @@ import { TagFilters } from "@/constants/filter";
 import ROUTES from "@/constants/routes";
 import { EMPTY_TAGS } from "@/constants/states";
 import { getTags } from "@/lib/actions/tag.action"
-import { RouteParams } from "@/types/global";
 
 const Tag = async ({ searchParams }: RouteParams) => {
   const { page, pageSize, query, filter } = await searchParams;

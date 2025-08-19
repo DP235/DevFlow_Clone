@@ -5,6 +5,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { useRouter } from "next/navigation";
 import { deleteQuestion } from "@/lib/actions/question.action";
 import { deleteAnswer } from "@/lib/actions/answer.action";
+import { toast } from "sonner";
 
 interface Props {
     type: string;
@@ -22,15 +23,13 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
         if(type === "Question") {
             await deleteQuestion({ questionId: itemId });
 
-            toast({
-                title: "Question deleted",
+            toast.success("Question deleted", {
                 description: "Your question has been deleted successfully.",
             })
         } else if(type === "Answer") {
             await deleteAnswer({ answerId: itemId });
             
-            toast({
-                title: "Answer deleted",
+            toast.success("Answer deleted", {
                 description: "Your answer has been deleted successfully."
             })
         }

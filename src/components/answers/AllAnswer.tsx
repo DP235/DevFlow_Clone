@@ -1,4 +1,3 @@
-import { ActionResponse, GAnswer } from "@/types/global"
 import DataRenderer from "../DataRenderer";
 import { EMPTY_ANSWERS } from "@/constants/states";
 import AnswerCard from "../cards/AnswerCard";

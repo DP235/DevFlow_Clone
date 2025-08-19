@@ -2,11 +2,10 @@
 
 import { createVote } from "@/lib/actions/vote.action";
 import { formatNumber } from "@/lib/utils";
-import { HasVotedResponse } from "@/types/action";
-import { ActionResponse } from "@/types/global";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { use, useState } from "react";
+import { toast } from "sonner";
 
 interface Props {
     targetType: 'question' | 'answer';
@@ -28,8 +27,7 @@ const Votes = ({ upvotes, downvotes, hasVotedPromise, targetId, targetType }: Pr
 
     const handleVote = async (voteType: "upvote" | "downvote") => {
         if(!userId)
-            return toast({
-                title: "Please login to vote",
+            return toast("Please login to vote", {
                 description: "Only logged-in users can vote.",
             })
         
@@ -41,10 +39,8 @@ const Votes = ({ upvotes, downvotes, hasVotedPromise, targetId, targetType }: Pr
             });
 
             if(!result.success) {
-                return toast({
-                    title: "Failed to vote",
-                    description: result.error?.message,
-                    variant: "destructive"
+                return toast.error("Failed to vote", {
+                    description: result.error?.message
                 })
             }
             const successMessage = 
@@ -52,16 +48,13 @@ const Votes = ({ upvotes, downvotes, hasVotedPromise, targetId, targetType }: Pr
                 ? `Upvote ${!hasUpvoted ? "added" : "removed"} successfully`
                 : `Downvote ${!hasDownvoted ? "added" : "removed"} successfully`
 
-            toast({
-                title: successMessage,
+            toast.success(successMessage, {
                 description: "Your vote has been recorded.",
             })
         } catch(error) {
-            toast({
-                title: "Failed to vote",
-                description: "An error occurred while voting. Please try again later.",
-                variant: "destructive"
-            })
+            toast.error("Failed to vote", {
+                description: `An error occurred while voting. Please try again later. Error Detail: ${error}`
+            });
         } finally {
             setIsLoading(false);
         }

@@ -1,8 +1,6 @@
 import Interaction, { IInteractionDoc } from "@/database/interaction.model";
-import { CreateInteractionParams, UpdateReputationParams } from "@/types/action";
-import { ActionResponse, ErrorResponse } from "@/types/global";
 import action from "../handlers/action";
-import { CreateInteractionSchema } from "../validation";
+import { CreateInteractionSchema } from "../validations";
 import handleError from "../handlers/error";
 import mongoose from "mongoose";
 import { User } from "@/database";

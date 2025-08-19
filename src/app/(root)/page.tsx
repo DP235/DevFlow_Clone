@@ -9,7 +9,14 @@ import { HomePageFilters } from "@/constants/filter";
 import ROUTES from "@/constants/routes";
 import { EMPTY_QUESTION } from "@/constants/states";
 import { getQuestions } from "@/lib/actions/question.action";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Dev Overflow | Home",
+  description:
+    "Discover different programming questions and answers with recommendations from the community.",
+};
 
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>

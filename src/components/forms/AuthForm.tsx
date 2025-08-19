@@ -23,10 +23,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ActionResponse } from "@/types/global";
 
 interface AuthFormProps<T extends FieldValues> {
-  schema: ZodType<T, T>;
+  schema: ZodType<T>;
   defaultValues: T;
   onSubmit: (data: T) => Promise<ActionResponse>;
   formType: "SIGN_UP" | "SIGN_IN";
@@ -49,7 +48,7 @@ const AuthForm = <T extends FieldValues>({
     const result = (await onSubmit(data)) as ActionResponse;
 
     if (result?.success) {
-      toast("Success", {
+      toast.success("Success", {
         description:
           formType === "SIGN_IN"
             ? "Signed in successfully"
@@ -58,7 +57,7 @@ const AuthForm = <T extends FieldValues>({
 
       router.push(ROUTES.HOME);
     } else {
-      toast(`Error ${result?.status}`, {
+      toast.error(`Error ${result?.status}`, {
         description: result?.error?.message
       });
     }

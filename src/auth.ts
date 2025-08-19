@@ -1,9 +1,8 @@
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google";
-import { ActionResponse } from "./types/global";
 import { api } from "./lib/api";
 import { IAccountDoc } from "./database/account.model";
-import { SignInSchema } from "./lib/validation";
+import { SignInSchema } from "./lib/validations";
 import { IUserDoc } from "./database/user.model";
 import bcrypt from "bcryptjs";
 import Credentials from "next-auth/providers/credentials";

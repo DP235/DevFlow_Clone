@@ -1,4 +1,3 @@
-import { GAnswer } from '@/types/global'
 import React, { Suspense } from 'react'
 import UserAvatar from '../UserAvatar'
 import Link from 'next/link'

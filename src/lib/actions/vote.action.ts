@@ -1,9 +1,7 @@
 'use server'
 
-import { CreateVoteParams, HasVotedParams, HasVotedResponse, UpdateVoteCountParams } from "@/types/action";
-import { ActionResponse, ErrorResponse } from "@/types/global";
 import action from "../handlers/action";
-import { CreateVoteSchema, HasVotedSchema, UpdateVoteCountSchema } from "../validation";
+import { CreateVoteSchema, HasVotedSchema, UpdateVoteCountSchema } from "../validations";
 import handleError from "../handlers/error";
 import mongoose, { ClientSession } from "mongoose";
 import { Answer, Question, Vote } from "@/database";

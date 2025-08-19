@@ -2,7 +2,6 @@ import { auth } from '@/auth';
 import ProfileLink from '@/components/user/ProfileLink';
 import UserAvatar from '@/components/UserAvatar';
 import { getUser, getUserAnswers, getUserQuestions, getUserStats, getUserTopTags } from '@/lib/actions/user.action'
-import { RouteParams } from '@/types/global'
 import { notFound } from 'next/navigation';
 import dayjs from 'dayjs'
 import Link from 'next/link';

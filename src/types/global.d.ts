@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server";
-
 type ActionResponse<T = null> = {
   success: boolean;
   data?: T;

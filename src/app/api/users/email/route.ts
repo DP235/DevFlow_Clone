@@ -2,8 +2,7 @@ import User from "@/database/user.model";
 import handleError from "@/lib/handlers/error";
 import { NotFoundError, ValidationError } from "@/lib/http-errors";
 import dbConnect from "@/lib/mongoose";
-import { UserSchema } from "@/lib/validation";
-import { APIErrorResponse } from "@/types/global";
+import { UserSchema } from "@/lib/validations";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

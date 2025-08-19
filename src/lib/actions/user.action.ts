@@ -1,12 +1,10 @@
 "use server"
 
-import { ActionResponse, Badges, ErrorResponse, GAnswer, GQuestion, GUser, PaginatedSearchParams } from "@/types/global";
 import action from "../handlers/action";
-import { GetUserAnswersSchema, GetUserQuestionsSchema, GetUserSchema, GetUserTagsSchema, PaginatedSearchParamsSchema } from "../validation";
+import { GetUserAnswersSchema, GetUserQuestionsSchema, GetUserSchema, GetUserTagsSchema, PaginatedSearchParamsSchema } from "../validations";
 import handleError from "../handlers/error";
 import { FilterQuery, PipelineStage, Types } from "mongoose";
 import { Answer, Question, User } from "@/database";
-import { GetUserAnswersParams, GetUserParams, GetUserQuestionsParams, GetUserTagsParams } from "@/types/action";
 import { assignBadges } from "../utils";
 
 export async function getUsers(params: PaginatedSearchParams): Promise<ActionResponse<{ users: GUser[]; isNext: boolean}>> {

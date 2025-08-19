@@ -1,6 +1,5 @@
 import ROUTES from '@/constants/routes';
 import { getTimeStamp } from '@/lib/utils';
-import { GQuestion, GTag}  from '@/types/global'
 import Link from 'next/link';
 import React from 'react'
 import TagCard from './TagCard';

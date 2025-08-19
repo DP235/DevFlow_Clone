@@ -1,9 +1,7 @@
 "use server"
 
-import { CollectionBaseParams } from "@/types/action";
-import { ActionResponse, ErrorResponse, GCollection, PaginatedSearchParams } from "@/types/global";
 import action from "../handlers/action";
-import { CollectionBaseSchema, PaginatedSearchParamsSchema } from "../validation";
+import { CollectionBaseSchema, PaginatedSearchParamsSchema } from "../validations";
 import handleError from "../handlers/error";
 import { Collection } from "@/database";
 import { revalidatePath } from "next/cache";

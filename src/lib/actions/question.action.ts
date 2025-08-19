@@ -1,20 +1,19 @@
 "use server"
 
-import { ActionResponse, ErrorResponse, GQuestion, PaginatedSearchParams } from "@/types/global";
 import action from "../handlers/action";
-import { AskQuestionSchema, DeleteQuestionSchema, EditQuestionSchema, GetQuestionSchema, IncrementViewsSchema, PaginatedSearchParamsSchema } from "../validation";
+import { AskQuestionSchema, DeleteQuestionSchema, EditQuestionSchema, GetQuestionSchema, IncrementViewsSchema, PaginatedSearchParamsSchema } from "../validations";
 import handleError from "../handlers/error";
 import mongoose, { FilterQuery, Types } from "mongoose";
 import Question, { IQuestionDoc } from "@/database/question.model";
 import Tag, { ITagDoc } from "@/database/tag.model";
 import TagQuestion from "@/database/tag-question.model";
-import { CreateQuestionParams, DeleteQuestionParams, EditQuestionParams, GetQuestionParams, IncrementViewsParams, RecommendationParams } from "@/types/action";
 import dbConnect from "../mongoose";
 import { Answer, Collection, Interaction, Vote } from "@/database";
 import { revalidatePath } from "next/cache";
 import { after } from "next/server";
 import { createInteraction } from "./interaction.action";
 import { auth } from "@/auth";
+import { cache } from "react";
 
 export async function createQuestion(
     params: CreateQuestionParams
@@ -193,7 +192,7 @@ export async function editQuestion(params: EditQuestionParams): Promise<ActionRe
     }
 }
 
-export async function getQuestion(params: GetQuestionParams): Promise<ActionResponse<GQuestion>> {
+export const getQuestion = cache(async function getQuestion(params: GetQuestionParams): Promise<ActionResponse<GQuestion>> {
     const validationResult = await action({
         params,
         schema: GetQuestionSchema,
@@ -216,7 +215,7 @@ export async function getQuestion(params: GetQuestionParams): Promise<ActionResp
     } catch (error) {
         return handleError(error) as ErrorResponse;
     }
-}
+});
 
 export async function getQuestions(
     params: PaginatedSearchParams

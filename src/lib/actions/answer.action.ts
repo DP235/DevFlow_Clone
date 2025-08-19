@@ -1,16 +1,13 @@
 "use server"
 
 import Answer, { IAnswerDoc } from "@/database/answer.model";
-import { CreateAnswerParams, DeleteAnswerParams, GetAnswerParams } from "@/types/action";
-import { ActionResponse, ErrorResponse } from "@/types/global";
 import action from "../handlers/action";
-import { AnswerServerSchema, DeleteAnswerSchema, GetAnswerSchema } from "../validation";
+import { AnswerServerSchema, DeleteAnswerSchema, GetAnswerSchema } from "../validations";
 import handleError from "../handlers/error";
 import mongoose from "mongoose";
 import { Question, Vote } from "@/database";
 import { revalidatePath } from "next/cache";
 import ROUTES from "@/constants/routes";
-import { GAnswer } from "@/types/global";
 import { after } from "next/server";
 import { createInteraction } from "./interaction.action";
 

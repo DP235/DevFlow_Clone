@@ -1,6 +1,6 @@
 "use client";
 
-import { AskQuestionSchema } from '@/lib/validation'
+import { AskQuestionSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useRef, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
@@ -24,7 +24,6 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import ROUTES from '@/constants/routes';
 import { ReloadIcon } from "@radix-ui/react-icons"
-import { GQuestion } from '@/types/global';
 
 const Editor = dynamic(() => import('@/components/editor'), {
   ssr: false

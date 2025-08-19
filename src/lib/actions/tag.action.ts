@@ -1,10 +1,8 @@
-import { ActionResponse, ErrorResponse, GQuestion, GTag, PaginatedSearchParams } from "@/types/global";
 import action from "../handlers/action";
-import { GetTagQuestionsSchema, PaginatedSearchParamsSchema } from "../validation";
+import { GetTagQuestionsSchema, PaginatedSearchParamsSchema } from "../validations";
 import handleError from "../handlers/error";
 import { FilterQuery } from "mongoose";
 import { Question, Tag } from "@/database";
-import { GetTagQuestionsParams } from "@/types/action";
 import dbConnect from "../mongoose";
 
 export const getTags = async (
